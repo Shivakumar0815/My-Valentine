@@ -23,17 +23,16 @@
     border-radius: 20px;
     text-align: center;
     box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-    max-width: 90%;
+    max-width: 92%;
   }
 
-  h1 {
-    color: #ff4d6d;
-  }
+  h1 { color: #ff4d6d; margin: 0 0 10px; }
+  p { margin: 10px 0 0; }
 
   .buttons {
-    margin-top: 30px;
+    margin-top: 28px;
     position: relative;
-    height: 150px;
+    height: 160px;
   }
 
   button {
@@ -43,7 +42,8 @@
     border-radius: 14px;
     cursor: pointer;
     position: absolute;
-    transition: all 0.3s ease;
+    transition: transform 0.25s ease, left 0.25s ease, top 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
   }
 
   #yesBtn {
@@ -57,7 +57,7 @@
   #noBtn {
     background: #adb5bd;
     color: white;
-    top: 80px;
+    top: 84px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
@@ -65,12 +65,24 @@
 
   #celebrate {
     display: none;
-    margin-top: 20px;
+    margin-top: 18px;
   }
 
   #celebrate img {
     max-width: 100%;
     border-radius: 16px;
+    margin-top: 10px;
+  }
+
+  #musicBtn {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    background: #ff4d6d;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
   }
 
   canvas {
@@ -95,9 +107,16 @@
   </div>
 
   <div id="celebrate">
-    <h2>YAYYYY 🎉💘</h2>
+    <h2 style="color:#ff4d6d;margin:0;">YAYYYY 🎉💘</h2>
     <img src="https://media.giphy.com/media/26tknCqiJrBQG6bxC/giphy.gif" alt="Celebration">
     <p>I found a love… and it’s you ❤️</p>
+
+    <a id="musicBtn"
+       href="https://music.apple.com/search?term=perfect%20ed%20sheeran"
+       target="_blank"
+       rel="noopener">
+      Play our song 🍎🎶
+    </a>
   </div>
 </div>
 
@@ -110,57 +129,66 @@
 
   let yesScale = 1;
 
-  // Runaway NO + growing YES (works on touch + mouse)
-  function moveNoButton() {
-    const x = Math.random() * 240 - 120;
-    const y = Math.random() * 120 - 60;
+  // Confetti setup
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+
+  const pieces = Array.from({ length: 170 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height - canvas.height,
+    r: Math.random() * 6 + 4,
+    c: `hsl(${Math.random() * 360}, 100%, 60%)`,
+    s: Math.random() * 4 + 2
+  }));
+
+  let confettiOn = false;
+  function startConfetti() {
+    confettiOn = true;
+    requestAnimationFrame(drawConfetti);
+  }
+
+  function drawConfetti() {
+    if (!confettiOn) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (const p of pieces) {
+      ctx.fillStyle = p.c;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+      p.y += p.s;
+      if (p.y > canvas.height + 10) p.y = -10;
+    }
+    requestAnimationFrame(drawConfetti);
+  }
+
+  // Runaway NO + growing YES
+  function moveNoButton(e) {
+    if (e) e.preventDefault();
+
+    const maxX = 240, maxY = 130;
+    const x = Math.random() * maxX - maxX / 2;
+    const y = (Math.random() * maxY - maxY / 2) + 60;
+
     noBtn.style.transform = `translate(${x}px, ${y}px)`;
-    yesScale += 0.25;
+
+    yesScale += 0.22;
     yesBtn.style.transform = `translateX(-50%) scale(${yesScale})`;
   }
 
   noBtn.addEventListener("mouseenter", moveNoButton);
-  noBtn.addEventListener("touchstart", moveNoButton);
+  noBtn.addEventListener("touchstart", moveNoButton, { passive: false });
+  noBtn.addEventListener("click", moveNoButton); // just in case
 
+  // YES click: show celebration first (no redirect!)
   yesBtn.addEventListener("click", () => {
     document.querySelector(".buttons").style.display = "none";
     celebrate.style.display = "block";
     startConfetti();
-
-    // Open Apple Music 🎵
-    window.open(
-      "https://music.apple.com/search?term=perfect%20ed%20sheeran",
-      "_blank"
-    );
   });
-
-  // Confetti 🎊
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const pieces = Array.from({ length: 160 }, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height - canvas.height,
-    r: Math.random() * 6 + 4,
-    c: `hsl(${Math.random() * 360},100%,60%)`,
-    s: Math.random() * 4 + 2
-  }));
-
-  function startConfetti() {
-    function draw() {
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      pieces.forEach(p => {
-        ctx.fillStyle = p.c;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fill();
-        p.y += p.s;
-        if (p.y > canvas.height) p.y = -10;
-      });
-      requestAnimationFrame(draw);
-    }
-    draw();
-  }
 </script>
 
 </body>
