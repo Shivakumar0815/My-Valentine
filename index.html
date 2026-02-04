@@ -1,195 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Be My Valentine 💖</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentine 💌</title>
 
-<style>
-  body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
-  }
+  <style>
+    :root{
+      --card:#ffffff;
+      --text:#222;
+      --shadow: 0 18px 40px rgba(0,0,0,0.18);
+    }
 
-  .card {
-    background: white;
-    padding: 32px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
-    max-width: 92%;
-  }
+    *{ box-sizing:border-box; }
 
-  h1 { color: #ff4d6d; margin: 0 0 10px; }
-  p { margin: 10px 0 0; }
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      overflow:hidden;
+      color:var(--text);
+      padding: 18px;
 
-  .buttons {
-    margin-top: 28px;
-    position: relative;
-    height: 160px;
-  }
+      /* Colorful flowers + love stickers background */
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255, 224, 102, 0.55), transparent 42%),
+        radial-gradient(circle at 78% 22%, rgba(122, 210, 255, 0.55), transparent 40%),
+        radial-gradient(circle at 25% 78%, rgba(255, 144, 196, 0.55), transparent 44%),
+        radial-gradient(circle at 84% 82%, rgba(160, 255, 178, 0.55), transparent 45%),
 
-  button {
-    padding: 14px 32px;
-    font-size: 18px;
-    border: none;
-    border-radius: 14px;
-    cursor: pointer;
-    position: absolute;
-    transition: transform 0.25s ease, left 0.25s ease, top 0.25s ease;
-    -webkit-tap-highlight-color: transparent;
-  }
+        radial-gradient(circle, rgba(255,255,255,0.70) 0 2px, transparent 3px) 0 0 / 38px 38px,
+        radial-gradient(circle, rgba(255,255,255,0.40) 0 1.5px, transparent 3px) 10px 14px / 30px 30px,
 
-  #yesBtn {
-    background: #ff4d6d;
-    color: white;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-  }
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Cg opacity='0.95'%3E%3Cg transform='translate(38 44)'%3E%3Ccircle cx='0' cy='-10' r='7' fill='%23FF7AA2'/%3E%3Ccircle cx='10' cy='0' r='7' fill='%23FFB703'/%3E%3Ccircle cx='0' cy='10' r='7' fill='%2387E8FF'/%3E%3Ccircle cx='-10' cy='0' r='7' fill='%237BFFB3'/%3E%3Ccircle cx='0' cy='0' r='6' fill='%23FFFFFF'/%3E%3C/g%3E%3Cg transform='translate(208 58)'%3E%3Ccircle cx='0' cy='-10' r='7' fill='%2387E8FF'/%3E%3Ccircle cx='10' cy='0' r='7' fill='%237BFFB3'/%3E%3Ccircle cx='0' cy='10' r='7' fill='%23FFB703'/%3E%3Ccircle cx='-10' cy='0' r='7' fill='%23FF7AA2'/%3E%3Ccircle cx='0' cy='0' r='6' fill='%23FFFFFF'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 
-  #noBtn {
-    background: #adb5bd;
-    color: white;
-    top: 84px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-  }
+      background-size:
+        auto, auto, auto, auto,
+        38px 38px,
+        30px 30px,
+        260px 260px;
+      background-attachment: fixed;
+    }
 
-  #celebrate {
-    display: none;
-    margin-top: 18px;
-  }
+    canvas#confetti{
+      position: fixed;
+      inset: 0;
+      pointer-events:none;
+      z-index: 10;
+      display:none;
+    }
 
-  #celebrate img {
-    max-width: 100%;
-    border-radius: 16px;
-    margin-top: 10px;
-  }
+    .card{
+      width:min(520px, 95vw);
+      background: rgba(255,255,255,0.92);
+      border-radius: 22px;
+      padding: 26px 20px;
+      box-shadow: var(--shadow);
+      text-align:center;
+      backdrop-filter: blur(6px);
+    }
 
-  #musicBtn {
-    display: inline-block;
-    margin-top: 14px;
-    padding: 12px 18px;
-    border-radius: 12px;
-    background: #ff4d6d;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 700;
-  }
+    h1{
+      margin: 6px 0 8px;
+      font-size: clamp(26px, 4.3vw, 34px);
+    }
 
-  canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-  }
-</style>
+    p{ opacity: 0.88; }
+
+    .buttons{
+      position: relative;
+      height: 120px;
+      margin-top: 10px;
+    }
+
+    button{
+      border:none;
+      cursor:pointer;
+      border-radius: 14px;
+      padding: 14px 22px;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    #yesBtn{
+      background:#22c55e;
+      color:white;
+      position:absolute;
+      left:50%;
+      top:35px;
+      transform: translateX(-120px);
+    }
+
+    #noBtn{
+      background:#ef4444;
+      color:white;
+      position:absolute;
+      left:50%;
+      top:35px;
+      transform: translateX(20px);
+    }
+
+    .hidden{ display:none; }
+
+    .photo-wrap{
+      margin: 16px auto;
+      max-width:420px;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 18px 38px rgba(0,0,0,0.22);
+    }
+
+    .photo-wrap img{ width:100%; }
+
+    .music{
+      margin-top:16px;
+      border-radius:16px;
+      overflow:hidden;
+    }
+
+    .footer{
+      margin-top:14px;
+      font-size:12px;
+      opacity:0.75;
+    }
+  </style>
 </head>
 
 <body>
-
 <canvas id="confetti"></canvas>
 
 <div class="card">
-  <h1>SANGAM 💕<br>Will you be my Valentine?</h1>
+  <div id="questionView">
+    <h1>Will you be my Valentine, <span style="color:#ff3b7c;">SANGAM</span>? 💖</h1>
+    <p>Choose wisely 😄</p>
 
-  <div class="buttons">
-    <button id="yesBtn">Yes 💖</button>
-    <button id="noBtn">No 🙈</button>
+    <div class="buttons" id="buttons">
+      <button id="yesBtn" onclick="yesClicked()">Yes ✅</button>
+      <button id="noBtn" onclick="noClicked()">No ❌</button>
+    </div>
+
+    <div class="footer">Made with ❤️</div>
   </div>
 
-  <div id="celebrate">
-    <h2 style="color:#ff4d6d;margin:0;">YAYYYY 🎉💘</h2>
-    <img src="https://media.giphy.com/media/26tknCqiJrBQG6bxC/giphy.gif" alt="Celebration">
-    <p>I found a love… and it’s you ❤️</p>
+  <div id="celebrationView" class="hidden">
+    <h2>YAYYY!! 🎉💞</h2>
+    <p>Best decision ever, SANGAM 😌</p>
 
-    <a id="musicBtn"
-       href="https://music.apple.com/search?term=perfect%20ed%20sheeran"
-       target="_blank"
-       rel="noopener">
-      Play our song 🍎🎶
-    </a>
+    <!-- ✅ YOUR IMAGE -->
+    <div class="photo-wrap">
+      <img src="IMG_8628.jpeg" alt="Celebration Photo">
+    </div>
+
+    <div class="music">
+      <iframe
+        allow="autoplay *; encrypted-media *;"
+        frameborder="0"
+        height="175"
+        style="width:100%;"
+        src="https://embed.music.apple.com/us/album/perfect/1440857781?i=1440857794">
+      </iframe>
+    </div>
+
+    <div class="footer">Screenshot this moment ❤️</div>
   </div>
 </div>
 
 <script>
+  let noCount = 0;
+  let yesScale = 1;
+
   const yesBtn = document.getElementById("yesBtn");
   const noBtn = document.getElementById("noBtn");
-  const celebrate = document.getElementById("celebrate");
+
+  function yesClicked(){
+    document.getElementById("questionView").classList.add("hidden");
+    document.getElementById("celebrationView").classList.remove("hidden");
+    startConfetti(2200);
+  }
+
+  function noClicked(){
+    noCount++;
+    yesScale = Math.min(yesScale + 0.2, 3);
+    yesBtn.style.transform = `translateX(-120px) scale(${yesScale})`;
+
+    const x = Math.random() * 120 - 60;
+    const y = Math.random() * 60 - 30;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+  }
+
   const canvas = document.getElementById("confetti");
   const ctx = canvas.getContext("2d");
 
-  let yesScale = 1;
+  function startConfetti(duration){
+    canvas.style.display="block";
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+    const pieces = Array.from({length:150},()=>({
+      x:Math.random()*innerWidth,
+      y:-20,
+      s:6+Math.random()*6,
+      c:`hsl(${Math.random()*360},90%,60%)`,
+      v:2+Math.random()*4
+    }));
 
-  // Confetti setup
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const end = Date.now()+duration;
+    (function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      pieces.forEach(p=>{
+        p.y+=p.v;
+        ctx.fillStyle=p.c;
+        ctx.fillRect(p.x,p.y,p.s,p.s);
+      });
+      if(Date.now()<end) requestAnimationFrame(draw);
+      else canvas.style.display="none";
+    })();
   }
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
-
-  const pieces = Array.from({ length: 170 }, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height - canvas.height,
-    r: Math.random() * 6 + 4,
-    c: `hsl(${Math.random() * 360}, 100%, 60%)`,
-    s: Math.random() * 4 + 2
-  }));
-
-  let confettiOn = false;
-  function startConfetti() {
-    confettiOn = true;
-    requestAnimationFrame(drawConfetti);
-  }
-
-  function drawConfetti() {
-    if (!confettiOn) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (const p of pieces) {
-      ctx.fillStyle = p.c;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
-      p.y += p.s;
-      if (p.y > canvas.height + 10) p.y = -10;
-    }
-    requestAnimationFrame(drawConfetti);
-  }
-
-  // Runaway NO + growing YES
-  function moveNoButton(e) {
-    if (e) e.preventDefault();
-
-    const maxX = 240, maxY = 130;
-    const x = Math.random() * maxX - maxX / 2;
-    const y = (Math.random() * maxY - maxY / 2) + 60;
-
-    noBtn.style.transform = `translate(${x}px, ${y}px)`;
-
-    yesScale += 0.22;
-    yesBtn.style.transform = `translateX(-50%) scale(${yesScale})`;
-  }
-
-  noBtn.addEventListener("mouseenter", moveNoButton);
-  noBtn.addEventListener("touchstart", moveNoButton, { passive: false });
-  noBtn.addEventListener("click", moveNoButton); // just in case
-
-  // YES click: show celebration first (no redirect!)
-  yesBtn.addEventListener("click", () => {
-    document.querySelector(".buttons").style.display = "none";
-    celebrate.style.display = "block";
-    startConfetti();
-  });
 </script>
-
 </body>
 </html>
