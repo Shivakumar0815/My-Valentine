@@ -1,462 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Valentine 💌</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💌</title>
 
-  <style>
-    :root{
-      --card:#ffffff;
-      --text:#222;
-      --shadow: 0 18px 40px rgba(0,0,0,0.18);
-    }
+<style>
+:root{
+  --card:#ffffff;
+  --shadow:0 18px 40px rgba(0,0,0,.18);
+}
 
-    *{ box-sizing:border-box; }
+*{box-sizing:border-box}
 
-    body{
-      margin:0;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      overflow:hidden;
-      color:var(--text);
-      padding: 18px;
+html,body{height:100%}
 
-      /* Colorful flowers + love stickers background */
-      background:
-        radial-gradient(circle at 12% 18%, rgba(255, 224, 102, 0.55), transparent 42%),
-        radial-gradient(circle at 78% 22%, rgba(122, 210, 255, 0.55), transparent 40%),
-        radial-gradient(circle at 25% 78%, rgba(255, 144, 196, 0.55), transparent 44%),
-        radial-gradient(circle at 84% 82%, rgba(160, 255, 178, 0.55), transparent 45%),
+body{
+  margin:0;
+  padding:20px;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  overflow-x:hidden;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
 
-        radial-gradient(circle, rgba(255,255,255,0.70) 0 2px, transparent 3px) 0 0 / 38px 38px,
-        radial-gradient(circle, rgba(255,255,255,0.40) 0 1.5px, transparent 3px) 10px 14px / 30px 30px,
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,224,102,.55), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(122,210,255,.55), transparent 40%),
+    radial-gradient(circle at 30% 80%, rgba(255,144,196,.55), transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(160,255,178,.55), transparent 45%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Ctext x='20' y='40' font-size='26'%3E🌸%3C/text%3E%3Ctext x='120' y='80' font-size='24'%3E💖%3C/text%3E%3Ctext x='60' y='160' font-size='22'%3E✨%3C/text%3E%3C/svg%3E");
+  background-size:cover;
+}
 
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='0 0 260 260'%3E%3Crect width='260' height='260' fill='none'/%3E%3Cg opacity='0.95'%3E%3Cg transform='translate(38 44)'%3E%3Ccircle cx='0' cy='-10' r='7' fill='%23FF7AA2'/%3E%3Ccircle cx='10' cy='0' r='7' fill='%23FFB703'/%3E%3Ccircle cx='0' cy='10' r='7' fill='%2387E8FF'/%3E%3Ccircle cx='-10' cy='0' r='7' fill='%237BFFB3'/%3E%3Ccircle cx='0' cy='0' r='6' fill='%23FFFFFF'/%3E%3C/g%3E%3Cg transform='translate(208 58) scale(1.1)'%3E%3Ccircle cx='0' cy='-10' r='7' fill='%2387E8FF'/%3E%3Ccircle cx='10' cy='0' r='7' fill='%237BFFB3'/%3E%3Ccircle cx='0' cy='10' r='7' fill='%23FFB703'/%3E%3Ccircle cx='-10' cy='0' r='7' fill='%23FF7AA2'/%3E%3Ccircle cx='0' cy='0' r='6' fill='%23FFFFFF'/%3E%3C/g%3E%3Cg transform='translate(72 196) scale(1.05)'%3E%3Ccircle cx='0' cy='-10' r='7' fill='%237BFFB3'/%3E%3Ccircle cx='10' cy='0' r='7' fill='%23FF7AA2'/%3E%3Ccircle cx='0' cy='10' r='7' fill='%23FFB703'/%3E%3Ccircle cx='-10' cy='0' r='7' fill='%2387E8FF'/%3E%3Ccircle cx='0' cy='0' r='6' fill='%23FFFFFF'/%3E%3C/g%3E%3Cg transform='translate(212 210) scale(0.95)'%3E%3Ccircle cx='0' cy='-10' r='7' fill='%23FFB703'/%3E%3Ccircle cx='10' cy='0' r='7' fill='%2387E8FF'/%3E%3Ccircle cx='0' cy='10' r='7' fill='%23FF7AA2'/%3E%3Ccircle cx='-10' cy='0' r='7' fill='%237BFFB3'/%3E%3Ccircle cx='0' cy='0' r='6' fill='%23FFFFFF'/%3E%3C/g%3E%3C/g%3E%3Cg opacity='0.85'%3E%3Cpath d='M140 98c-6-10-23-10-29 2-6-12-23-12-29-2-7 12 4 25 29 40 25-15 36-28 29-40z' fill='%23FF4D6D'/%3E%3Cpath d='M46 118c-4-7-16-7-20 1-4-8-16-8-20-1-5 8 3 17 20 27 17-10 25-19 20-27z' fill='%23FF8FAB'/%3E%3Cpath d='M210 140c-4-7-16-7-20 1-4-8-16-8-20-1-5 8 3 17 20 27 17-10 25-19 20-27z' fill='%23FF8FAB'/%3E%3C/g%3E%3Cg opacity='0.8'%3E%3Cpath d='M120 34l3 8 8 3-8 3-3 8-3-8-8-3 8-3z' fill='%23FFFFFF'/%3E%3Cpath d='M232 26l2 6 6 2-6 2-2 6-2-6-6-2 6-2z' fill='%23FFFFFF'/%3E%3Cpath d='M20 220l2 6 6 2-6 2-2 6-2-6-6-2 6-2z' fill='%23FFFFFF'/%3E%3C/g%3E%3C/svg%3E");
+/* Layers */
+#heartsLayer,#sparkleLayer,#confetti{position:fixed;inset:0;pointer-events:none}
+#heartsLayer{z-index:20}
+#sparkleLayer{z-index:30}
+#confetti{z-index:40;display:none}
 
-      background-size:
-        auto, auto, auto, auto,
-        38px 38px,
-        30px 30px,
-        260px 260px;
-      background-attachment: fixed;
+.card{
+  width:min(520px,95vw);
+  background:rgba(255,255,255,.93);
+  border-radius:22px;
+  padding:26px 20px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(6px);
+  text-align:center;
+  margin-bottom:40px;
+  z-index:5;
+}
 
-      cursor: none; /* custom sparkle cursor on laptops */
-    }
+h1{margin:0 0 8px;font-size:30px}
+p{opacity:.85}
 
-    /* Layers */
-    #sparkleLayer{
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 9999;
-    }
+.buttons{position:relative;height:120px;margin-top:10px}
 
-    #heartsLayer{
-      position: fixed;
-      inset: 0;
-      pointer-events:none;
-      z-index: 30;
-      overflow:hidden;
-    }
+button{
+  border:none;
+  border-radius:14px;
+  padding:14px 22px;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+  position:absolute;
+}
 
-    canvas#confetti{
-      position: fixed;
-      inset: 0;
-      pointer-events:none;
-      z-index: 40;
-      display:none;
-    }
+#yesBtn{
+  background:#22c55e;
+  color:#fff;
+  left:50%;
+  top:35px;
+  transform:translateX(-120px);
+}
 
-    /* Floating hearts */
-    .heart{
-      position: absolute;
-      opacity: 0.85;
-      animation: floatUp linear forwards;
-      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.18));
-      will-change: transform, opacity;
-      user-select:none;
-    }
+#noBtn{
+  background:#ef4444;
+  color:#fff;
+  left:50%;
+  top:35px;
+  transform:translateX(20px);
+}
 
-    @keyframes floatUp{
-      from { transform: translateY(40px) scale(0.9) rotate(0deg); opacity: 0.0; }
-      10%  { opacity: 0.9; }
-      to   { transform: translateY(-120vh) scale(1.35) rotate(18deg); opacity: 0.0; }
-    }
+.hidden{display:none}
 
-    /* Sparkle particle */
-    .sparkle{
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,1), rgba(255,255,255,0));
-      animation: sparkleOut 700ms ease-out forwards;
-      filter: drop-shadow(0 8px 10px rgba(0,0,0,0.12));
-      user-select:none;
-    }
-    .sparkle::after{
-      content:"✨";
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size: 14px;
-      transform: translateY(-2px);
-    }
-    @keyframes sparkleOut{
-      from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-      to   { opacity: 0; transform: translate(-50%, -70%) scale(1.6); }
-    }
+.photo-wrap{
+  margin:16px auto;
+  max-width:420px;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 18px 38px rgba(0,0,0,.22);
+}
 
-    /* Custom cursor dot (desktop only) */
-    #cursorDot{
-      position: fixed;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.9);
-      box-shadow: 0 10px 18px rgba(0,0,0,0.18);
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      z-index: 10000;
-      mix-blend-mode: screen;
-      display:none;
-    }
+.photo-wrap img{width:100%;display:block}
 
-    /* Card */
-    .card{
-      width:min(520px, 95vw);
-      background: rgba(255,255,255,0.92);
-      border-radius: 22px;
-      padding: 26px 20px;
-      box-shadow: var(--shadow);
-      text-align:center;
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      position: relative;
-      z-index: 5;
-    }
+.music{
+  margin-top:18px;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 14px 28px rgba(0,0,0,.12);
+}
 
-    h1{
-      margin: 6px 0 8px;
-      font-size: clamp(26px, 4.3vw, 34px);
-      line-height: 1.15;
-    }
+.footer{margin-top:14px;font-size:12px;opacity:.7}
 
-    p{
-      margin: 0 0 18px;
-      opacity: 0.88;
-      font-size: 16px;
-    }
+/* Hearts */
+.heart{
+  position:absolute;
+  animation:floatUp linear forwards;
+  font-size:20px;
+}
+@keyframes floatUp{
+  from{transform:translateY(40px);opacity:0}
+  10%{opacity:1}
+  to{transform:translateY(-120vh);opacity:0}
+}
 
-    .buttons{
-      position: relative;
-      height: 120px;
-      margin-top: 10px;
-    }
-
-    button{
-      border:none;
-      cursor:pointer;
-      border-radius: 14px;
-      padding: 14px 22px;
-      font-size: 18px;
-      font-weight: 800;
-      -webkit-tap-highlight-color: transparent;
-      transition: transform .12s ease;
-      user-select:none;
-    }
-
-    #yesBtn{
-      background:#22c55e;
-      color:white;
-      position:absolute;
-      left:50%;
-      top:35px;
-      transform: translateX(-120px);
-      box-shadow: 0 12px 22px rgba(34,197,94,0.35);
-    }
-
-    #noBtn{
-      background:#ef4444;
-      color:white;
-      position:absolute;
-      left:50%;
-      top:35px;
-      transform: translateX(20px);
-      box-shadow: 0 12px 22px rgba(239,68,68,0.35);
-    }
-
-    .hidden{ display:none !important; }
-
-    .photo-wrap{
-      margin: 16px auto;
-      max-width:420px;
-      border-radius:18px;
-      overflow:hidden;
-      box-shadow:0 18px 38px rgba(0,0,0,0.22);
-      background: white;
-    }
-
-    .photo-wrap img{
-      width:100%;
-      display:block;
-    }
-
-    .music{
-      margin-top:16px;
-      border-radius:16px;
-      overflow:hidden;
-      box-shadow: 0 14px 28px rgba(0,0,0,0.12);
-    }
-
-    .footer{
-      margin-top:14px;
-      font-size:12px;
-      opacity:0.75;
-    }
-
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      .heart, .sparkle { animation: none !important; }
-      body { cursor: auto; }
-      #cursorDot { display:none !important; }
-    }
-  </style>
+/* Sparkles */
+.sparkle{
+  position:absolute;
+  transform:translate(-50%,-50%);
+  animation:sparkle 700ms forwards;
+}
+.sparkle::after{content:"✨"}
+@keyframes sparkle{
+  from{opacity:1}
+  to{opacity:0;transform:translate(-50%,-80%)}
+}
+</style>
 </head>
 
 <body>
-  <div id="sparkleLayer"></div>
-  <div id="heartsLayer"></div>
-  <div id="cursorDot"></div>
-  <canvas id="confetti"></canvas>
 
-  <div class="card">
-    <div id="questionView">
-      <h1>Will you be my Valentine, <span style="color:#ff3b7c;">SANGAM</span>? 💖</h1>
-      <p>Choose wisely 😄</p>
+<div id="heartsLayer"></div>
+<div id="sparkleLayer"></div>
+<canvas id="confetti"></canvas>
 
-      <div class="buttons" id="buttons">
-        <button id="yesBtn" onclick="yesClicked()">Yes ✅</button>
-        <button id="noBtn" onclick="noClicked()">No ❌</button>
-      </div>
+<div class="card">
 
-      <div class="footer">Made with ❤️</div>
+  <div id="questionView">
+    <h1>Will you be my Valentine,<br><span style="color:#ff3b7c">SANGAM</span>? 💖</h1>
+    <p>Choose wisely 😄</p>
+
+    <div class="buttons" id="buttons">
+      <button id="yesBtn" onclick="yesClicked()">Yes ✅</button>
+      <button id="noBtn" onclick="noClicked()">No ❌</button>
     </div>
 
-    <div id="celebrationView" class="hidden">
-      <h2>YAYYY!! 🎉💞</h2>
-      <p>Best decision ever, SANGAM 😌</p>
-
-      <div class="photo-wrap">
-        <img src="IMG_8628.jpeg" alt="Celebration Photo">
-      </div>
-
-      <div class="music">
-        <iframe
-          allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
-          frameborder="0"
-          height="175"
-          style="width:100%;max-width:100%;overflow:hidden;background:transparent;"
-          sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-          src="https://embed.music.apple.com/us/album/perfect/1440857781?i=1440857794">
-        </iframe>
-      </div>
-
-      <div class="footer">Screenshot this moment ❤️</div>
-    </div>
+    <div class="footer">Made with ❤️</div>
   </div>
 
-  <script>
-    // ---------------------------
-    // Buttons logic (Yes/No)
-    // ---------------------------
-    let noCount = 0;
-    let yesScale = 1;
+  <div id="celebrationView" class="hidden">
+    <h2>YAYYY!! 🎉💞</h2>
+    <p>Best decision ever 😌</p>
 
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn  = document.getElementById("noBtn");
+    <div class="photo-wrap">
+      <img src="IMG_8628.jpeg">
+    </div>
 
-    function yesClicked(){
-      document.getElementById("questionView").classList.add("hidden");
-      document.getElementById("celebrationView").classList.remove("hidden");
+    <!-- 🎵 Vintage Bollywood song -->
+    <div class="music">
+      <iframe
+        allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+        frameborder="0"
+        height="175"
+        style="width:100%"
+        src="https://embed.music.apple.com/ca/album/tujh-mein-rab-dikhta-hai/673596457?i=673596462">
+      </iframe>
+    </div>
 
-      startConfetti(2400);
-      burstHearts(26);
-    }
+    <div class="footer">Tap play if needed ❤️</div>
+  </div>
 
-    function noClicked(){
-      noCount++;
+</div>
 
-      // Grow YES
-      yesScale = Math.min(yesScale + 0.2, 3.2);
-      yesBtn.style.transform = `translateX(-120px) scale(${yesScale})`;
+<script>
+let noCount=0,yesScale=1;
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+const heartsLayer=document.getElementById("heartsLayer");
+const sparkleLayer=document.getElementById("sparkleLayer");
 
-      // NO runs away
-      moveNoButton();
+/* Buttons */
+function yesClicked(){
+  document.getElementById("questionView").classList.add("hidden");
+  document.getElementById("celebrationView").classList.remove("hidden");
+  burstHearts(30);
+}
+function noClicked(){
+  noCount++;
+  yesScale=Math.min(yesScale+.2,3);
+  yesBtn.style.transform=`translateX(-120px) scale(${yesScale})`;
+  noBtn.style.transform=`translate(${Math.random()*120-60}px,${Math.random()*60-30}px)`;
+  burstHearts(8);
+}
 
-      // Cute burst
-      burstHearts(10);
-    }
+/* Hearts */
+const hearts=["💖","💘","💕","💞","🌸","✨"];
+function spawnHeart(x){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.textContent=hearts[Math.floor(Math.random()*hearts.length)];
+  h.style.left=(x??Math.random()*innerWidth)+"px";
+  h.style.bottom="-20px";
+  h.style.animationDuration=6+Math.random()*4+"s";
+  heartsLayer.appendChild(h);
+  setTimeout(()=>h.remove(),10000);
+}
+setInterval(()=>spawnHeart(),700);
+function burstHearts(c){for(let i=0;i<c;i++)setTimeout(()=>spawnHeart(innerWidth/2),i*25)}
 
-    function moveNoButton(){
-      const container = document.getElementById("buttons");
-      const rect = container.getBoundingClientRect();
+/* Sparkles */
+function sparkle(x,y){
+  const s=document.createElement("div");
+  s.className="sparkle";
+  s.style.left=x+"px";
+  s.style.top=y+"px";
+  sparkleLayer.appendChild(s);
+  setTimeout(()=>s.remove(),700);
+}
+addEventListener("pointermove",e=>sparkle(e.clientX,e.clientY));
+addEventListener("pointerdown",e=>sparkle(e.clientX,e.clientY));
+</script>
 
-      const padding = 10;
-      const maxX = rect.width - noBtn.offsetWidth - padding;
-      const maxY = rect.height - noBtn.offsetHeight - padding;
-
-      const x = Math.floor(Math.random() * Math.max(maxX, 1)) + padding;
-      const y = Math.floor(Math.random() * Math.max(maxY, 1)) + padding;
-
-      const tx = x - (rect.width/2 + 20);
-      const ty = y - 35;
-
-      noBtn.style.left = "50%";
-      noBtn.style.top  = "0px";
-      noBtn.style.transform = `translateX(${tx}px) translateY(${ty}px)`;
-    }
-
-    // ---------------------------
-    // Floating hearts animation
-    // ---------------------------
-    const heartsLayer = document.getElementById("heartsLayer");
-    const heartChars = ["💖","💘","💝","💕","💗","💓","💞","❤️","🌸","🌺","🌼","✨"];
-
-    function spawnHeart(x = null){
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.textContent = heartChars[Math.floor(Math.random()*heartChars.length)];
-
-      const left = (x === null) ? Math.random() * window.innerWidth : x + (Math.random()*40 - 20);
-      heart.style.left = left + "px";
-      heart.style.bottom = (-30 - Math.random()*40) + "px";
-
-      const dur = 6 + Math.random()*5;
-      heart.style.animationDuration = dur + "s";
-
-      const size = 14 + Math.random()*18;
-      heart.style.fontSize = size + "px";
-
-      heartsLayer.appendChild(heart);
-      setTimeout(()=>heart.remove(), (dur*1000)+200);
-    }
-
-    // continuous hearts
-    setInterval(()=>spawnHeart(), 650);
-
-    function burstHearts(count){
-      const centerX = window.innerWidth/2;
-      for(let i=0;i<count;i++){
-        setTimeout(()=>spawnHeart(centerX), i*25);
-      }
-    }
-
-    // ---------------------------
-    // Sparkle cursor + custom dot
-    // ---------------------------
-    const sparkleLayer = document.getElementById("sparkleLayer");
-    const cursorDot = document.getElementById("cursorDot");
-
-    const finePointer = window.matchMedia && window.matchMedia("(pointer: fine)").matches;
-
-    if(finePointer){
-      cursorDot.style.display = "block";
-    } else {
-      // On touch devices, keep default cursor
-      document.body.style.cursor = "auto";
-    }
-
-    let lastSparkle = 0;
-
-    function makeSparkle(x, y){
-      const s = document.createElement("div");
-      s.className = "sparkle";
-      s.style.left = x + "px";
-      s.style.top = y + "px";
-      sparkleLayer.appendChild(s);
-      setTimeout(()=>s.remove(), 750);
-    }
-
-    window.addEventListener("pointermove", (e)=>{
-      const x = e.clientX;
-      const y = e.clientY;
-
-      if(finePointer){
-        cursorDot.style.left = x + "px";
-        cursorDot.style.top = y + "px";
-      }
-
-      const now = performance.now();
-      if(now - lastSparkle > 45){
-        lastSparkle = now;
-        makeSparkle(x, y);
-      }
-    });
-
-    // Mobile taps create sparkles too
-    window.addEventListener("pointerdown", (e)=>{
-      makeSparkle(e.clientX, e.clientY);
-      spawnHeart(e.clientX);
-    });
-
-    // ---------------------------
-    // Confetti
-    // ---------------------------
-    const canvas = document.getElementById("confetti");
-    const ctx = canvas.getContext("2d");
-
-    function startConfetti(duration){
-      canvas.style.display="block";
-      canvas.width = innerWidth;
-      canvas.height = innerHeight;
-
-      const pieces = Array.from({length:170},()=>({
-        x:Math.random()*innerWidth,
-        y:-20 - Math.random()*innerHeight*0.2,
-        s:6+Math.random()*6,
-        c:`hsl(${Math.random()*360},90%,60%)`,
-        vx:-2+Math.random()*4,
-        vy:2+Math.random()*5,
-        r:Math.random()*Math.PI,
-        vr:-0.15+Math.random()*0.3
-      }));
-
-      const end = Date.now()+duration;
-
-      (function draw(){
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        pieces.forEach(p=>{
-          p.x += p.vx;
-          p.y += p.vy;
-          p.r += p.vr;
-
-          if(p.y > innerHeight + 40){
-            p.y = -20;
-            p.x = Math.random()*innerWidth;
-          }
-          if(p.x < -40) p.x = innerWidth + 40;
-          if(p.x > innerWidth + 40) p.x = -40;
-
-          ctx.save();
-          ctx.translate(p.x, p.y);
-          ctx.rotate(p.r);
-          ctx.fillStyle = p.c;
-          ctx.fillRect(-p.s/2, -p.s/2, p.s, p.s*0.7);
-          ctx.restore();
-        });
-
-        if(Date.now()<end) requestAnimationFrame(draw);
-        else canvas.style.display="none";
-      })();
-    }
-  </script>
 </body>
 </html>
